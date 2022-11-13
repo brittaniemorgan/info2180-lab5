@@ -7,11 +7,11 @@ $dbname = 'world';
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
 
-if (isset($_GET[htmlentities("country")])){
+if (isset($_GET[htmlentities("country")]) and !isset($_GET["lookup"])):
   $country = $_GET[htmlentities("country")];
   $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
   $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+
 
 ?>
 <table border="1px">  
@@ -36,3 +36,33 @@ if (isset($_GET[htmlentities("country")])){
   <?php endforeach; ?>
 </table>
 
+<?php
+endif;
+if (isset ($_GET["lookup"])):
+  $country = $_GET[htmlentities("country")];
+  $stmt = $conn->query("SELECT * FROM countries JOIN cities ON countries.code = cities.country_code  WHERE countries.name LIKE '%$country%' ");
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+  <table border="1px">  
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>District</th>
+        <th>Population</th>
+    </tr>  
+    </thead>
+
+    <?php 
+      foreach ($results as $row): 
+    ?>
+    <tbody>
+      <tr>
+        <td><?=$row["name"]?></td> 
+        <td><?=$row["district"]?></td>
+        <td><?=$row["population"]?></td>
+      </tr>
+    </tbody>
+    <?php endforeach; ?>
+   </table>
+<?php endif ?>
