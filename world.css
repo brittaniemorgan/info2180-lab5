@@ -1,1 +1,50 @@
-/* Add your own styles */
+body header{
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    height: 150px;
+    margin-bottom: 30px;
+    background-image: url("world.jpg");
+    
+}
+
+body header h1{
+    color: white;
+}
+
+#controls {
+    margin-bottom: 50px;
+}
+
+#country{
+    width: 400px;
+}
+
+#lookup{
+    background-color: skyblue;
+    border-style: none;
+    width: 70px;
+}
+
+#citySearch{
+    background-color: aquamarine;
+    border-style: none;
+    width: 70px;
+}
+
+table th{
+    border-left: none;
+    border-top: none;
+    border-right: none;
+}
+
+
+table td{
+    border-left: none;
+    border-top: none;
+    border-right: none;  
+}
+
+table{
+    border-radius: 15px;
+}
